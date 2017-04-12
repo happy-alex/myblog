@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="郭鹏波的个人技术博客"><title>react的生命周期 | alex</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">react的生命周期</h1><a id="logo" href="/.">alex</a><p class="description">好记性不如烂笔头</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">react的生命周期</h1><div class="post-meta">Apr 11, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>讨论一下react的几个生命周期：<br>1.componentWillMount<br>2.componentDidMount<br>3.componentWillReceiveProps<br>4.shouldComponentUpdate<br>5.componentWillUpdate<br>6.render<br>7.componentDidUpdate<br>8.componentWillUnmount</p>
+<h3 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount"></a>componentWillMount</h3><p>有人会在这个方法里调用ajax来请求后端数据。这种做法是不妥的。<br>禁止调用setState, 如果想在render之前指定state，应该使用default state</p>
+<h3 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount"></a>componentDidMount</h3><p>在这个方法里，组件已经成功挂载，可以处理许多跟dom有关的操作，可以处理需要组件未挂载之前不能做的事情，比如事件监听。<br>可以调用setState<br><strong>建议将ajax相关请求放在这里执行</strong>。为什么?</p>
+<blockquote>
+<p>事实上不能保证在组件挂载之前，ajax请求将 resolve 。如果将ajax放在willMount中，可能会导致我们在一个尚未挂载的组件上进行设置State，这不仅不会起作用，反而导致react的某些问题（不知道具体会影响到哪些）在componentDidMount中执行ajax，将是十分安全的。</p>
+</blockquote>
+<h3 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps"></a>componentWillReceiveProps</h3><p><strong>初始渲染的时候，是不会调用这个方法的，待验证</strong><br>可以setState</p>
+<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>禁止setState<br>很多人喜欢在这个地方来控制组件是否进行更新，来优化性能。<br><a href="http://www.infoq.com/cn/news/2016/07/react-shouldComponentUpdate" target="_blank" rel="external">这里有另一种不同意见</a>，过度使用这个特性可能会导致的问题。主要是scu会拖慢组件的更新速度，如果要比较的对象很大，比如层层嵌套的大家伙，很明显将会很耗时。请谨慎使用。</p>
+<h3 id="componentWillUpdate"><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate"></a>componentWillUpdate</h3><p>在组件更新之前执行，跟willReceiveProps的功能部分重复，除了这里不允许调用setState。willReceiveProps接受到了新的props，但组件并不一定会更新（scu）,但willUpdate一定发生在render之前。因此如果组件里面存在scu方法，同时还想组件在更新之前做点什么的话，代码应该放在这里执行。</p>
+<h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a>componentDidUpdate</h3><p>可以调用setState。<br>这里可以进行一些更新dom的操作，来响应props或state的改变</p>
+<h3 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a>componentWillUnmount</h3><p>禁止setState<br>清理组件的残留，比如abort请求，解绑事件等</p>
+<h3 id="各生命周期是否可以调用setState方法"><a href="#各生命周期是否可以调用setState方法" class="headerlink" title="各生命周期是否可以调用setState方法"></a>各生命周期是否可以调用setState方法</h3><table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>调用setState</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WillMount</td>
+<td>no </td>
+</tr>
+<tr>
+<td>Didmount</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>WillReceiveProps</td>
+<td>no</td>
+</tr>
+<tr>
+<td>scu</td>
+<td>no</td>
+</tr>
+<tr>
+<td>WillUpdate</td>
+<td>no</td>
+</tr>
+<tr>
+<td>DidUpdate</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>WillUnmount</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://happy-alex.github.io/2017/04/11/2/" data-id="cj1f2qriy0000o1arajjn8b68" class="article-share-link">分享到</a><div class="tags"><a href="/tags/react/">react</a></div><div class="post-nav"><a href="/2017/04/07/welcome/" class="pre">welcome</a><a href="/2017/04/12/border-radius/" class="next">border-radius的实现原理</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://happy-alex.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/fe/">fe</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/mvvm/" style="font-size: 15px;">mvvm</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/mvvm/">mvvm</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/decorator-es7/">decorator-es7</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/border-radius/">border-radius的实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/11/2/">react的生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/07/welcome/">welcome</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/07/1/">命令式编程和声明式编程</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://ymfe.tech/" title="YMFE" target="_blank">YMFE</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">alex.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

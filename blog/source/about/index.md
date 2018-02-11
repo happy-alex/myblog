@@ -11,12 +11,13 @@ date: 2017-04-07 21:11:07
 
 你装饰了别人的梦
 
-我的github地址： https://github.com/happy-alex
+
+郭鹏波 前端开发工程师 
+现就职于去哪儿网
+我的github地址: https://github.com/happy-alex
+我的邮箱: happy265bobo@gmail.com or 1335536581@qq.com
 
 
+## 关于这个blog：
+一直是想到哪儿写到哪儿，有很多碎片化的东西。内容的连贯性不好，可能深度也不够。如果你看到了，拍砖请轻拍。我继续努力...
 
-
-附录
-
-关于markdown http://www.appinn.com/markdown
-markdown中写表格 http://www.jianshu.com/p/sTeAbC

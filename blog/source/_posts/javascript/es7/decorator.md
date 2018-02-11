@@ -1,7 +1,7 @@
 ---
 title: decorator-es7
 date: 2017-04-12 20:57:42
-tags:
+tags: es7 decorators
 ---
 
 前段时间在工作中，团队因为react的组件里的this的问题就事件写法产生了分歧，

@@ -1,6 +1,7 @@
 ---
 title: mvvm
 date: 2017-04-12 21:40:50
+categories: js
 tags: mvvm
 ---
 

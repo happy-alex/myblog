@@ -1,7 +1,8 @@
 ---
 title: 事件循环机制
 date: 2017-05-20 21:40:50
-tags: js es6
+categories: js
+tags: es6
 ---
 网上讲事件循环的文章很多，这里mark下自己的认识。
 

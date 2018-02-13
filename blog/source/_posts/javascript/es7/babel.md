@@ -1,6 +1,7 @@
 ---
 title: babel
 date: 2017-08-14 17:36:42
+categories: js
 tags: babel
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: web图片加载和渲染时机
 date: 2017-08-02
-categories: 
+categories: css
 tags: image css
 ---
 

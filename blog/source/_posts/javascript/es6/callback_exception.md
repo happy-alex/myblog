@@ -1,6 +1,7 @@
 ---
 title: 异步回调的异常处理
 date: 2017-07-20 21:40:50
+categories: js
 tags: es6
 ---
 

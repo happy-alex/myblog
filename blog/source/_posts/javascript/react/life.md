@@ -1,6 +1,7 @@
 ---
 title: react的生命周期
 date: 2017-04-11 20:26:58
+categories: js
 tags: react
 ---
 

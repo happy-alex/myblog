@@ -1,7 +1,7 @@
 ---
 title: shadowDom
 date: 2017-05-19
-categories: fe
+categories: html
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 守护进程
 date: 2017-08-17 21:25
+categories: node
 tags: js node
 ---
 

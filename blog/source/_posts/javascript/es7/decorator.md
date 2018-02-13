@@ -1,6 +1,7 @@
 ---
 title: decorator-es7
 date: 2017-04-12 20:57:42
+categories: js
 tags: es7 decorators
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: node的单线程模式
 date: 2017-08-20 21:25
+categories: node
 tags: js node
 ---
 

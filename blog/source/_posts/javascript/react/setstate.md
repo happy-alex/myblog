@@ -1,7 +1,7 @@
 ---
 title: setState
 date: 2017-07-19
-categories: 
+categories: js
 tags: react
 ---
 

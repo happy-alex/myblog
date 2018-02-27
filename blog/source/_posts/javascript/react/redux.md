@@ -2,7 +2,7 @@
 title: react-redux
 date: 2017-05-28
 categories: js
-tags: react redux
+tags: [react, redux]
 ---
 
 [redux源码分析](https://github.com/kenberkeley/redux-simple-tutorial/blob/master/redux-advanced-tutorial.md)

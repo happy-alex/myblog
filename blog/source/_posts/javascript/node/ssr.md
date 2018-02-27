@@ -2,7 +2,7 @@
 title: 服务端渲染ssr
 date: 2017-12-05
 categories: js
-tags: node ssr
+tags: [node, ssr]
 ---
 
 ### 背景：

@@ -2,7 +2,7 @@
 title: 前端路由设计杂谈
 date: 2018-02-13
 categories: js
-tags: react router
+tags: [react, router]
 ---
 
 ## 前言
@@ -71,7 +71,6 @@ react-router是官方推荐的react应用的路由库。最新版本是v4。之�
 
 ### router v2
 ```javascript
-
 // 方法一：传入一个独立的routes配置文件。然后通过this.props.children渲染子路由
 <Router history={history} routes={routes} />
 

@@ -1,7 +1,7 @@
 ---
 title: POST
 date: 2017-09-09 17:09:23
-tags: http post
+tags: [http, post]
 ---
 
 post请求有4种方式

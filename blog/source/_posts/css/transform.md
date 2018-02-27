@@ -5,10 +5,13 @@ categories: css
 tags: css
 ---
 
+### 前言
 > 父元素如果有transform属性，会导致子元素的fixed失效（相当于absolute定位）。暂时没有好的解决办法。
 
 移动端如果用到了fixed定位，建议使用position:absolute来实现类似效果。
 
+
+### 问题
 最近在做一个移动端页面开发的时候遇到了一个fixed的问题。
 
 使用场景：

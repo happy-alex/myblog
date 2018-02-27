@@ -9,7 +9,7 @@ tags: es6
 > 每一个线程都有自己的事件循环(event loop)机制，事件循环按照事件队列里的任务(task)“依次”执行。
 > 浏览器中的工作线程也有自己的event loop，浏览器确保多个task可以按照一定顺序执行，并在多个task之间可能进行UI渲染。
 
-###概念
+### 概念
 Tasks: 任务队列
 Microtasks: 微任务队列
 Stack: js执行堆栈
@@ -21,7 +21,7 @@ microTask在每一个task执行后紧接着执行，前提是**当前执行栈st
 如何理解当前栈是空闲的？
 当没有js在执行的时候，就认为其是空闲的。比如当前正在执行一个函数，如果这个函数还没有返回，就认为当前栈不是空闲的。
 
-###一个有意思的case
+### 一个有意思的case
 ```javascript
 <div id="outer">
     <div id="inner"></div>
@@ -51,7 +51,7 @@ outer.addEventListener('click', onClick);
 2.手动点击inner，触发了inner的监听事件，执行完inner的监听事件后，冒泡到outer，执行outer的监听事件。由于在冒泡到outer前，inner的Listener已经执行完成并且返回了，所以虽然此轮任务尚未结束，但此时执行栈是空闲的，可以执行microtask。
 
 
-###备注
+### 备注
 有些文章把上面的task也称之为macrotask，以便和microtask区分。
 > macro-task包括：script(整体代码,主进程), setTimeout, setInterval, setImmediate, I/O, UI rendering。
 > micro-task包括：process.nextTick, Promise回调, Object.observe(已废弃), MutationObserver(DOM变化监听器)
@@ -73,6 +73,6 @@ Promise新建属于当前stack， 创建后会立即执行，首先输出2。Pro
 > 不同的浏览器实现存在差异，有些浏览器下setTimeout的回调可能会先于Promise回调执行
 
 
-###参考：
+### 参考：
 https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 

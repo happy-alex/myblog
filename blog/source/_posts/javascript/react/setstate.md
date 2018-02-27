@@ -13,10 +13,8 @@ setState()的参数支持对象和函数两种。
 2. 函数式setState
 ```javascript
 this.setState((state, props) => {
-
     // 当前组件的state和props值作为参数传入，
     // 通过返回一个新的state对象来进行state的更改。
-
     return newState;
 });
 ```

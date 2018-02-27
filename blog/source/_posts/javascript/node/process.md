@@ -2,7 +2,7 @@
 title: 守护进程
 date: 2017-08-17 21:25
 categories: node
-tags: js node
+tags: node
 ---
 
 区分3个概念：前台进程，后台进程，守护进程

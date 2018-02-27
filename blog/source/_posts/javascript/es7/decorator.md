@@ -2,22 +2,20 @@
 title: decorator-es7
 date: 2017-04-12 20:57:42
 categories: js
-tags: es7 decorators
+tags: [es7, decorators]
 ---
-
-前段时间在工作中，团队因为react的组件里的this的问题就事件写法产生了分歧，
+### 前言
+前段时间在工作中，因为react的组件里的this的指向问题，团队就事件写法产生了分歧，
 ```javascript
 class App extends Component {
-    // 第一种写法
-    onTapCard = () => {
-    }
+    // 第一种写法，需要手动绑定this一次
+    onTapCard = () => {}
     render () {
-        return <Card onTap={this.onTapCard} />;
+        return <Card onTap={this.onTapCard.bind(this)} />;
     }
 
-    // 第二种
-    onTapCard() {
-    }
+    // 第二种，每次绑定都需要创建一个匿名函数，浪费性能
+    onTapCard() {}
     render () {
         return <Card onTap={() => {this.onTapCard()} />;
     }
@@ -26,6 +24,8 @@ class App extends Component {
 
 后来有人介绍了@autobind这个装饰器，自动绑定好this，于是问题解决。下面说一下decorator是个神马东西。
 
+
+### decorator
 ES7从python借来了decorator概念。这个语法糖通过ES5的Object.defineProperty实现。
 首先回顾下Object.defineProperty的用法：描述对象的属性，比如是否可枚举，可写可读等，语法Object.defineProperty(obj, prop, descriptor)。
 

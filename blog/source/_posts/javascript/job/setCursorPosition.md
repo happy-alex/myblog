@@ -1,7 +1,7 @@
 ---
 title: js获取文本框中光标索引位置
 date: 2017-05-20
-tags: js
+tags: work
 ---
 
 工作中用到了，就mark下

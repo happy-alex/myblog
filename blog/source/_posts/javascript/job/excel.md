@@ -22,7 +22,7 @@ tags: excel
     });
 ```
 
-这里提供一个利用原生ajax实现post下载excel的方法
+这里写了一个利用原生ajax实现post下载excel的方法
 ```javascript
     function onDownloadExcel(options) {
         const {

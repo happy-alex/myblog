@@ -68,3 +68,52 @@ class A extends React.Component {
 标准写法是store.dispatch(action)，为什么实际业务开发中能够通过this.props.fetchData()这种方式来dispatch？
 
 答案就是bindActionCreators。this.props.fetchData是通过@connect被bindActionCreators包装过的。逻辑上把bindActionCreators(action, dispatch)处理成{action: dispatch(action)}，并作为props传入UI组件，这样UI组件就可以直接this.props.action()来触发dispatch了
+
+
+### applyMiddleware
+```javascript
+export default function applyMiddleware(...middlewares) {
+  return (createStore) => (reducer, preloadedState, enhancer) => {
+    const store = createStore(reducer, preloadedState, enhancer)
+    let dispatch = store.dispatch
+    let chain = []
+
+    const middlewareAPI = {
+      getState: store.getState,
+      dispatch: (action) => dispatch(action)
+    }
+    chain = middlewares.map(middleware => middleware(middlewareAPI))
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+}
+```
+ 
+### redux-thunk
+核心思想：扩展action的类型，使其支持function
+
+```javascript
+function createThunkMiddleware(extraArgument) {
+
+    // {dispatch, getState}和next均由redux在执行applyMiddlaware方法时注入，next实质上仍然指向store.dispatch
+    return ({ dispatch, getState }) => next => action => {
+        if (typeof action === 'function') {
+            return action(dispatch, getState, extraArgument);
+        }
+        return next(action);
+    };
+}
+
+const thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+export default thunk;
+```
+
+### redux-sage
+实现更精细的异步action管理
+利用generator实现。

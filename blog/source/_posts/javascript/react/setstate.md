@@ -36,7 +36,7 @@ console.log(this.state.count); //?
 
 函数式setState就是为了解决这个问题滴：
 当 React 碰到多次 setState(func)调用时，它会按照调用的顺序把这些函数func放进一个队列。
-接下来，React 会依次调用**队列**中的方法，把上一个func中更改的状态传递给当前的方法，从而不断更新state。
+接下来，React 会依次调用 **队列** 中的方法，把上一个func中更改的状态传递给当前的方法，从而不断更新state。
 我们改写上面的例子,改用函数式setState将会得到3。
 ```javascript
 function add() {
@@ -47,7 +47,7 @@ function add() {
 console.log(this.state.count);  //3
 ```
 
-###搞事情
+### 搞事情
 如果混用两种方式，会产生意想不到的效果。举个例子（伪代码）。
 ```javascript
 this.state = {
@@ -80,14 +80,19 @@ console.log(this.state.count); // 你猜是啥
 
 
 
-###补充：
+### 补充：
 
 React推荐的构造组件的写法是 class Card extends React.Component{};
 这条原型链是 Card -> React.Component -> React内部自定义对象（定义了setState，forceUpdate等方法） -> Object
 
 
-###疑惑
+### 疑惑
 1.“多次”调用setState会合并state更新操作，那这个“多次”React究竟是怎么算的？
 
+
+### setState到底是同步的还是异步的
+正确的回答是：可能同步可能异步。
+一般来说，setState在生命周期以及事件回调中是异步的，也就是react的批量处理更新。在其它情况下如promise，setTimeout中都是同步执行的。
+比如在setTimeout调用setState,会立即render并导致dom更新。
 
 

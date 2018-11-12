@@ -12,3 +12,18 @@ TODO...
 2. react组件和元素的区别。
 3.minxins和高阶组件
 4.css modules
+
+
+3条线
+1. node--周末
+2. vue/react
+3. 基础实现，编码
+
+
+周1，2 react
+3 算法
+4，5 vue
+6,7 node
+
+
+socket.io/websocket

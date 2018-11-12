@@ -15,3 +15,5 @@ chrome/safari测试通过js修改checked属性
 设置为”false”,”0”,undefined会选中
 
 一个元素如果是readonly，jQuery下其val和prop仍然可以进行编辑，而attr不行
+
+2. react的受控组件(setState)在ios11中文输入法下表现异常，比如想输入中国共产党，输入拼音zongguo，再输入g时可能会得到zongguogzongguo.改由非受控组件可以解决这个问题

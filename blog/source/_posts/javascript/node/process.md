@@ -1,5 +1,5 @@
 ---
-title: 守护进程
+title: 守护进程daemon
 date: 2017-08-17 21:25
 categories: node
 tags: node
@@ -30,7 +30,7 @@ pm2 start index.js
 ```
 其中forever和pm2是node应用专有的启动工具，两者都能保证当进程意外退出时立即重启，但pm2提供比forever更强大的功能，日志收集和监控。
 
-sudo service xx start/stop 启动/停止执行脚本
+sudo service xx.sh start/stop 启动/停止执行脚本
 
 ### 参考
 [http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html]

@@ -16,5 +16,6 @@ tags: react
 
 补充：
 在hybrid架构中，每次打开一个页面，都是新建一个webview。因此spa + redux模式在这种场景下并不适用，因为redux只有一个全局store，维护了多个子页面的store, 而在一个webview中，非本页面的store都没被利用，无疑是一种浪费
+
 ### mobx vs redux
    

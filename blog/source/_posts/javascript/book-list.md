@@ -10,3 +10,4 @@ tags: js
 3. [关于vdom的争论](https://www.zhihu.com/question/59953136/answer/170705334)
 4. [this的指向](https://aso114.com/wechat-detail.html?id=292614)
 5. http://web.jobbole.com/86734/
+6. [前端工程中的编译时优化](https://2017.jsconfchina.com/files/04-compile-time-optimizations-evan-you.pdf)

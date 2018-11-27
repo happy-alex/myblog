@@ -75,7 +75,7 @@ server {
     ssl_certificate_key  <.key文件路径>;
     ssl_session_timeout  5m;
     ssl_protocols  SSLv3 TLSv1 TLSv1.1 TLSv1.2;
-    ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+    ssl_ciphers <ssl_ciphers>
     ssl_prefer_server_ciphers   on;
 
     if ( $request_method !~ ^(GET|POST|HEAD)$ ) {

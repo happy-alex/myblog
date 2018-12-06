@@ -1,6 +1,54 @@
 ---
-title: graphql
-date: 2017-05-19
+title: graphql在dsp系统中的尝试
+date: 2017-11-11
 categories: other
 tags: graphql
 ---
+
+## 背景
+去哪儿dsp广告投放系统，是自己17年下半年维护的项目之一，采用的技术栈是egg + antdesign. 最初从0开始搭建，到现在基本稳定大概有一个多月的时间，中间还经历了一次大的迭代改版。这里mark下心得。
+
+dsp目的主要是为了更好的帮助产品运营在市场营销方面的工作。支持在线管理去哪儿对外的推广计划，相关素材模板，竞价花费等。业务性较强，它有两个很明显的业务特点：
+
+推广计划和素材模板存在多对多的关系
+一个用户关联着多个计划和素材
+
+最初采用后端java提供的restful风格的接口，由于涉及到复杂的嵌套查询，基本是由后端负责封装逻辑，内部查询多次，对外暴露给前端一个接口。
+后来再想这种场景下前端有没有解决方案，就接触了graphql。（其实前面说的java逻辑某种程度和graphql的工作很像）
+
+## 尝试
+
+dsp中的graphql效果图
+
+![dsp的graphql查询界面](https://img-blog.csdnimg.cn/20181206221207909.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RoengyNjVib2Jv,size_16,color_FFFFFF,t_70)
+
+## 总结
+
+graphql的一次查询过程，将restful转为graphql
+
+![graphql一次查询](https://img-blog.csdnimg.cn/20181206221042111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RoengyNjVib2Jv,size_16,color_FFFFFF,t_70)
+
+### graphql好在哪儿
+1. 一次查询可以请求复杂的数据
+2. 静态类型，类型文档可以详细查询接口字段
+3. 处理多版本的情况，客户端的自行决定请求内容
+
+### 潜在问题
+1. 查询通过递归取值完成的，存在性能问题：在一次http请求中，根据要查询的schema结构递归的调用各项资源的resolver，最后返回结果
+2. 安全，http缓存： Ddos攻击，过大查询反复请求，graphql操作经常变化，怎么做http缓存
+3. 查询schema写起来过于繁琐
+4. 如何推动后端改造：graphql主要是前端收益，如何说服后端支持
+
+### graphql vs rest
+
+1. 数据格式：rest是千人一面，多个终端设备的请求结果可能都是相同的；而graphql千人千面，支持前端按需获取，可针对不同环境返回不同内容
+2. API调用：rest访问每个资源，其都是一个endpoint；而graphql对外只暴露一个endpoint,差别只在请求体不同
+3. 复杂数据处理：复杂数据嵌套查询的场景，rest可能需要多次来返请求；而graphql只有一次，可减少网络开销
+4. 错误码：rest有多种错误码，graphql统一返回200，错误信息在响应体中返回
+
+### 后记
+BFF + Graphql的场景实践越来越多
+
+适合：客户端对数据有定制化需求或后端微服务较多，微服务小而美只专注于自己的领域，需要有一层能综合这些服务
+
+不适合：客户端数据单一，无需定制化；后端服务简单，或本身已经对外提供了综合服务，不存在多个微服务的场景

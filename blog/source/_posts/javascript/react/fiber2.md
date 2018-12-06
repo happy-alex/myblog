@@ -1,6 +1,6 @@
 ---
 title: suspense
-date: 2018-09-27
+date: 2018-09-30
 categories: js
 tags: react
 ---

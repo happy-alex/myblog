@@ -1,8 +1,8 @@
 ---
 title: passive
 date: 2018-11-01
-categories: fe
-tags: js
+categories: browser
+tags: browser
 ---
 
 ## 背景

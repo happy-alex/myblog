@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: alex的小站
+title: Alex的小站
 subtitle: 好记性不如烂笔头
 description: 郭鹏波的个人技术博客
-author: alex
+author: Alex
 language: zh-Hans
 timezone:
 
@@ -14,7 +14,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://happy-alex.github.io/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -25,7 +25,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: '*.html'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -71,3 +71,5 @@ deploy:
   type: git
   repo: https://github.com/happy-alex/happy-alex.github.io.git
   branch: master
+
+
